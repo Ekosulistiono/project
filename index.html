@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Congratulations Nadya Ambar Septi, S.Pd.</title>
+    <!-- Font Ketce -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Playball&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -13,8 +14,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Menggunakan nadya.png sebagai background utama */
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('nadya.png');
+            /* Menggunakan nadya.PNG sebagai background utama */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('nadya.PNG');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -28,20 +29,22 @@
             width: 100%;
             max-width: 380px;
             perspective: 1000px;
+            transition: transform 0.1s ease;
         }
 
         .card {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 25px;
             padding: 25px;
             box-shadow: 0 25px 50px rgba(0,0,0,0.5);
             border: 1px solid rgba(255,255,255,0.2);
             text-align: center;
-            animation: cardEntrance 1.2s ease-out;
+            animation: cardEntrance 1.2s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
+        /* Frame Foto */
         .photo-frame {
             position: relative;
             width: 100%;
@@ -51,6 +54,7 @@
             margin-bottom: 20px;
             border: 4px solid white;
             cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         .photo-frame img {
@@ -61,19 +65,23 @@
             top: 0;
             left: 0;
             opacity: 0;
-            transition: opacity 0.8s ease-in-out;
+            transition: opacity 0.8s ease-in-out, transform 0.5s ease;
         }
 
         .photo-frame img.active {
             opacity: 1;
+            transform: scale(1.02);
         }
 
         .name {
             font-weight: 800;
             font-size: 1.8rem;
-            color: white;
+            background: linear-gradient(135deg, #fff 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 5px;
-            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            filter: drop-shadow(0 0 10px rgba(255,215,0,0.3));
         }
 
         .title-sp {
@@ -82,6 +90,7 @@
             color: #FFD700;
             margin-bottom: 15px;
             display: block;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
         }
 
         .message {
@@ -90,17 +99,21 @@
             line-height: 1.6;
             font-style: italic;
             margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         .btn-surprise {
             background: #FFD700;
-            color: #333;
+            color: #d81b60;
             border: none;
             padding: 12px 25px;
             border-radius: 50px;
             font-weight: 800;
             cursor: pointer;
-            transition: 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         #surprise-overlay {
@@ -113,20 +126,33 @@
             align-items: center;
             z-index: 999;
             color: white;
+            padding: 30px;
             text-align: center;
-            padding: 20px;
+            backdrop-filter: blur(15px);
+        }
+
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 3;
+            animation: particleFloat linear infinite;
         }
 
         @keyframes cardEntrance {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from { transform: translateY(50px) scale(0.9); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
         }
 
-        /* Responsif HP */
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
         @media (max-width: 480px) {
-            .photo-frame { height: 320px; }
+            .card { padding: 20px; }
+            .photo-frame { height: 350px; }
             .name { font-size: 1.5rem; }
-            .title-sp { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -135,53 +161,80 @@
     <div id="tilt-container">
         <div class="card">
             <div class="photo-frame" onclick="nextPhoto()">
-                <!-- Pastikan nama file ini sama persis dengan yang diunggah ke GitHub -->
-                <img src="nadya.png" class="active" id="img1">
-                <img src="nadya1.png" id="img2">
-                <img src="nadya2.png" id="img3">
+                <!-- Menggunakan format .PNG huruf besar -->
+                <img src="nadya.PNG" class="active" id="img1">
+                <img src="nadya1.PNG" id="img2">
+                <img src="nadya2.PNG" id="img3">
             </div>
-            <p style="font-size: 0.7rem; color: white; margin-bottom: 10px;">TAP FOTO UNTUK GANTI ✨</p>
+            <p style="font-size: 0.7rem; margin-bottom: 10px; color: #fff; letter-spacing: 1px;">TAP FOTO UNTUK GANTI ✨</p>
             <div class="name">Nadya Ambar Septi</div>
             <span class="title-sp">S.Pd.</span>
-            <p class="message">"Selamat atas gelarnya! Semoga sukses terus kedepannya dan menjadi berkah buat sesama."</p>
+            <p class="message">"Officially S.Pd! Usahakan S.Pd itu... Sukses, Pintar, dan Dicintai. We are super proud of you!"</p>
             <button class="btn-surprise" onclick="showSurprise()">Open Surprise! 🎁</button>
         </div>
     </div>
 
-    <!-- Bagian Halaman Kejutan yang Diperbarui -->
-<div id="surprise-overlay" onclick="hideSurprise()">
-    <h2 style="color: #FFD700; font-size: 2.2rem; margin-bottom: 15px; font-family: 'Playball';">Happy Graduation!</h2>
-    
-    <p style="font-size: 1.1rem; line-height: 1.8; max-width: 500px; color: white;">
-        Selamat atas gelar barunya, <b>Nadya Ambar Septi, S.Pd.</b>!<br><br>
-        Akhirnya semua perjuangan, begadang, dan revisinya terbayar lunas hari ini. 
-        Semoga ilmu yang didapat bermanfaat dan menjadi pembuka jalan untuk kesuksesan 
-        kamu kedepannya. Perjalanan baru dimulai, tetap semangat dan terus bersinar! 🚀✨
-    </p>
-
-    <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.6; color: white;">(Klik di mana saja untuk kembali)</p>
-</div>
+    <!-- Halaman Kejutan -->
+    <div id="surprise-overlay" onclick="hideSurprise()">
+        <h2 style="color: #FFD700; font-size: 2.2rem; margin-bottom: 15px; font-family: 'Playball';">Happy Graduation!</h2>
+        <p style="font-size: 1.1rem; line-height: 1.8; max-width: 500px; color: white;">
+            Selamat atas gelar barunya, <b>Nadya Ambar Septi, S.Pd.</b>!<br><br>
+            Akhirnya semua perjuangan, begadang, dan revisinya terbayar lunas hari ini. 
+            Semoga ilmu yang didapat bermanfaat dan menjadi pembuka jalan untuk kesuksesan 
+            kamu kedepannya. Perjalanan baru dimulai, tetap semangat dan terus bersinar! 🚀✨
+        </p>
+        <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.6; color: white;">(Klik di mana saja untuk kembali)</p>
+    </div>
 
     <script>
-        let current = 1;
-        const total = 3;
+        let currentPhoto = 1;
+        const totalPhotos = 3;
 
         function nextPhoto() {
-            document.getElementById(`img${current}`).classList.remove('active');
-            current = (current % total) + 1;
-            document.getElementById(`img${current}`).classList.add('active');
+            document.getElementById(`img${currentPhoto}`).classList.remove('active');
+            currentPhoto = currentPhoto % totalPhotos + 1;
+            document.getElementById(`img${currentPhoto}`).classList.add('active');
         }
+
+        setInterval(nextPhoto, 5000);
 
         function showSurprise() {
             document.getElementById('surprise-overlay').style.display = 'flex';
+            for(let i=0; i<40; i++) {
+                setTimeout(createParticle, i * 50);
+            }
         }
 
         function hideSurprise() {
             document.getElementById('surprise-overlay').style.display = 'none';
         }
 
-        // Ganti foto otomatis setiap 5 detik
-        setInterval(nextPhoto, 5000);
+        function createParticle() {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const emojis = ['🌸', '✨', '💖', '🎓', '🎀', '💎'];
+            p.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.fontSize = (Math.random() * 25 + 10) + "px";
+            p.style.animationDuration = (Math.random() * 4 + 4) + "s";
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 8000);
+        }
+        setInterval(createParticle, 400);
+
+        // LOGIKA ANIMASI 3D TILT (Hanya Laptop/Desktop)
+        const container = document.getElementById('tilt-container');
+        if (window.innerWidth > 768) {
+            document.body.addEventListener('mousemove', (e) => {
+                let xAxis = (window.innerWidth / 2 - e.pageX) / 15; // Kecepatan miring horizontal
+                let yAxis = (window.innerHeight / 2 - e.pageY) / 15; // Kecepatan miring vertikal
+                container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+
+            document.body.addEventListener('mouseleave', () => {
+                container.style.transform = `rotateY(0deg) rotateX(0deg)`;
+            });
+        }
     </script>
 </body>
 </html>
